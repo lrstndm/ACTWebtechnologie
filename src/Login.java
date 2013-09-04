@@ -1,6 +1,9 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Main
  */
-@WebServlet("/Main")
-public class Main extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Main() {
+    public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +29,7 @@ public class Main extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+        
 	}
 
 	/**
@@ -34,6 +37,18 @@ public class Main extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		if (username == "a" && password == "a") {
+			PrintWriter out = response.getWriter();
+	        response.setContentType("text/html");
+	        out.print("<html><body>");
+	        out.print("Username: " + request.getParameter("username") + "<br/>");
+	        out.print("Password: " + request.getParameter("password"));
+	        out.print("</body></html>");
+		} else {
+			response.sendRedirect("wrongLogin.html");
+		}
 	}
 
 }
