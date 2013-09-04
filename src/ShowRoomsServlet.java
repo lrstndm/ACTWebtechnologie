@@ -2,7 +2,6 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Main
+ * Servlet implementation class ShowRoomsServlet
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/ShowRoomsServlet")
+public class ShowRoomsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public ShowRoomsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,25 +28,16 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+		PrintWriter out = response.getWriter();
+        response.setContentType("text/html");
+        out.print("<html><body><h1>ShowRoomsServlet</h1></body><html>");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		if (username.equals("verhuurder") && password.equals("verhuurder")) {
-			response.sendRedirect("ShowRoomsServlet");
-		} else if (username.equals("huurder") && password.equals("huurder")) {
-			response.sendRedirect("SearchRoomServlet");
-		} else if (username.equals("beheerder") && password.equals("beheerder")) {
-			response.sendRedirect("ShowPersonsServlet");
-		} else {
-			response.sendRedirect("wrongLogin.html");
-		}
+		// TODO Auto-generated method stub
 	}
 
 }
