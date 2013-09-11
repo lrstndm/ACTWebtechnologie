@@ -45,7 +45,8 @@ public class RegisterServlet extends HttpServlet {
 			s = request.getSession();
 		}
 		if (model == null) {
-			model = new Model();
+			
+			// TODO fout melding
 		}
 		model.addUser(new User(username, password, group));
 		response.sendRedirect("login.html");

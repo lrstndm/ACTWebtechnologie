@@ -22,6 +22,7 @@ public class AppContext implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent servletContext) {
+    	System.out.println("contextInitialized");
         Model model = new Model();
         servletContext.getServletContext().setAttribute("model", model);
     }
@@ -30,8 +31,7 @@ public class AppContext implements ServletContextListener {
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
      */
     public void contextDestroyed(ServletContextEvent servletContext) {
-        Model model = (Model) servletContext.getServletContext();
-        model = null;
+        
     }
 	
 }

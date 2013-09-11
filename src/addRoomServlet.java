@@ -37,14 +37,15 @@ public class addRoomServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		int squaremeter = Integer.parseInt(request.getParameter("squaremeter"));
-		int price = Integer.parseInt(request.getParameter("price"));
+		int squaremeter = Integer.parseInt(request.getParameter("squareMeter"));
+		int price = Integer.parseInt(request.getParameter("maxRentPrice"));
 		String city = request.getParameter("city");
 		
 		Model model = (Model) request.getServletContext().getAttribute("model");
 		model.getRooms();
 		model.addRoom(new Room(squaremeter, price, city));
-		System.out.println("Room added= \r\nSquareMeters: " + squaremeter + "\r\nPrice: " + price + "\r\nCity: " + city);
+		System.out.println("Room added=SquareMeters: " + squaremeter + "Price: " + price + "City: " + city);
+		response.sendRedirect("ShowRoomsServlet");
 	}
 
 }

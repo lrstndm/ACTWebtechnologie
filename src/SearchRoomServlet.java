@@ -37,7 +37,7 @@ public class SearchRoomServlet extends HttpServlet {
         		+ "</head>        "
         		+ "<body>"
         		+ "<h1>ShowRoomsServlet</h1><br>        "
-        		+ "<form action=&quot;S&quot; method=&quot;post&quot;>        "
+        		+ "<form action=FoundRoomsServlet method=&quot;post&quot;>        "
         		+ "Square meter: <input type=&quot;text&quot; name=&quot;sqauremeter&quot;><br>        "
         		+ "Max price: <input type=&quot;text&quot; name=&quot;maxprice&quot;><br>        "
         		+ "City: <input type=&quot;text&quot; name=&quot;city&quot;><br>       "

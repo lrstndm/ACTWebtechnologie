@@ -30,13 +30,23 @@ public class ShowRoomsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
         response.setContentType("text/html");
-        out.print("<html>"
-        		+ "<body>"
-        		+ "<h1>ShowRoomsServlet</h1><br>"
-        		+ "<a href=addRoom.html>Add a new Room</a><br>"
-        		+ "Current rooms:<br>"
+        Model model = (Model) request.getServletContext().getAttribute("model");
+        String html = "<html>"
+		+ "<body>"
+		+ "<h1>ShowRoomsServlet</h1><br>"
+		+ "<a href=addRoom.html>Add a new Room</a><br>"
+		+ "<h3>Current rooms:</h3>"
+		+ "<table border=1>"
+		+ "<tr><td>SqaureMeters</td><td>Price</td><td>City</td></tr>";
+		
+        for (Room room : model.getRooms()) {
+			html += "<tr><td>" + room.getSquareMeters() + "</td><td>" + room.getRentPrice() + "</td><td>" + room.getCity() + "</td></tr>";
+		}
+        
+        html += "</table>"
         		+ "</body>"
-        		+ "<html>");
+        		+ "<html>";
+        out.print(html);
 	}
 
 	/**
