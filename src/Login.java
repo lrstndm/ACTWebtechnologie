@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
@@ -39,15 +40,14 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		Persons p = (Persons) session.getAttribute("persons");
-		if (p != null) {
+		Model model = (Model)getServletContext().getAttribute("model");
+		ArrayList<User> users = model.getUsers();
+		if (users != null) {
 			boolean found = false;
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			
-			System.out.println(username + " - " + password);
-			
-			for (User u : p.getUsers()) {
+			for (User u : users) {
 				System.out.println("found: " + u.username + " - " + u.password + " - " + u.soort);
 				if (u.username.equals(username) && u.password.equals(password)) {
 					System.out.println("MATCH - " + u.soort);

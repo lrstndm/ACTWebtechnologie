@@ -41,9 +41,10 @@ public class addRoomServlet extends HttpServlet {
 		int price = Integer.parseInt(request.getParameter("price"));
 		String city = request.getParameter("city");
 		
-		ArrayList<Room> rooms = (ArrayList<Room>) session.getAttribute("rooms");
-		rooms.add(new Room(squaremeter, price, city));
-		session.setAttribute("rooms", rooms);
+		Model model = (Model) request.getServletContext().getAttribute("model");
+		model.getRooms();
+		model.addRoom(new Room(squaremeter, price, city));
+		System.out.println("Room added= \r\nSquareMeters: " + squaremeter + "\r\nPrice: " + price + "\r\nCity: " + city);
 	}
 
 }

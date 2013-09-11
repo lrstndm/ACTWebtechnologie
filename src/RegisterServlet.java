@@ -39,18 +39,15 @@ public class RegisterServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String group = request.getParameter("group"); // this will return "verhuurder" or "huurder"
 		HttpSession s = request.getSession();
-		Persons p = (Persons) s.getAttribute("persons");
+		Model model = (Model)getServletContext().getAttribute("model");
 		if (!s.isNew()) {
 			s.invalidate();
 			s = request.getSession();
 		}
-		if (p == null) {
-			p = new Persons();
+		if (model == null) {
+			model = new Model();
 		}
-		System.out.println(group + " < group");
-		User user =  new User(username, password, group);
-		p.addUser(user);
-		s.setAttribute("persons", p);
+		model.addUser(new User(username, password, group));
 		response.sendRedirect("login.html");
 	}
 
