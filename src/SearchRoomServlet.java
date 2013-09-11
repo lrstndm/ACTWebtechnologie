@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class SearchPageRenter
  */
-@WebServlet("/SearchPageRenter")
+@WebServlet("/SearchRoomServlet")
 public class SearchRoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,16 +28,30 @@ public class SearchRoomServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		System.out.print("doPost");
+        response.setContentType("text/html");
+        out.print("<!DOCTYPE html>        <html>        "
+        		+ "<head><meta charset=&quot;ISO-8859-1&quot;>        "
+        		+ "<title>Login screen</title>        "
+        		+ "</head>        "
+        		+ "<body>"
+        		+ "<h1>ShowRoomsServlet</h1><br>        "
+        		+ "<form action=&quot;S&quot; method=&quot;post&quot;>        "
+        		+ "Square meter: <input type=&quot;text&quot; name=&quot;sqauremeter&quot;><br>        "
+        		+ "Max price: <input type=&quot;text&quot; name=&quot;maxprice&quot;><br>        "
+        		+ "City: <input type=&quot;text&quot; name=&quot;city&quot;><br>       "
+        		+ "<input type=submit text=Submit value=Search></input><br>        "
+        		+ "</form>        "
+        		+ "</body>        "
+        		+ "</html>");  
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-        response.setContentType("text/html");
-        out.print("<html><body><h1>SearchRoomServlet</h1></body><html>");
+		
 	}
 
 }

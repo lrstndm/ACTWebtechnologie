@@ -1,25 +1,26 @@
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ShowRoomsServlet
+ * Servlet implementation class addRoomServlet
  */
-@WebServlet("/ShowRoomsServlet")
-public class ShowRoomsServlet extends HttpServlet {
+@WebServlet("/addRoomServlet")
+public class addRoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowRoomsServlet() {
+    public addRoomServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,22 +29,21 @@ public class ShowRoomsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-        response.setContentType("text/html");
-        out.print("<html>"
-        		+ "<body>"
-        		+ "<h1>ShowRoomsServlet</h1><br>"
-        		+ "<a href=addRoom.html>Add a new Room</a><br>"
-        		+ "Current rooms:<br>"
-        		+ "</body>"
-        		+ "<html>");
+		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		int squaremeter = Integer.parseInt(request.getParameter("squaremeter"));
+		int price = Integer.parseInt(request.getParameter("price"));
+		String city = request.getParameter("city");
+		
+		ArrayList<Room> rooms = (ArrayList<Room>) session.getAttribute("rooms");
+		rooms.add(new Room(squaremeter, price, city));
+		session.setAttribute("rooms", rooms);
 	}
 
 }
