@@ -39,7 +39,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(true); // TODO meneer zei false maar dan krijg ik een error bij het uitloggen en daarna weer inloggen
 		Model model = (Model)getServletContext().getAttribute("model");
 		ArrayList<User> users = model.getUsers();
 		if (users != null) {
@@ -54,10 +54,12 @@ public class Login extends HttpServlet {
 					switch (u.soort) {
 					case "verhuurder":
 						found = true;
+						session.setAttribute("username", u.getUsername());
 						response.sendRedirect("ShowRoomsServlet");
 						break;
 					case "huurder":
 						found = true;
+						session.setAttribute("username", u.getUsername());
 						response.sendRedirect("SearchRoomServlet");
 						break;
 					default:

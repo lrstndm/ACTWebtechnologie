@@ -36,11 +36,14 @@ public class SearchRoomServlet extends HttpServlet {
         		+ "<title>Login screen</title>        "
         		+ "</head>        "
         		+ "<body>"
-        		+ "<h1>ShowRoomsServlet</h1><br>        "
+        		+ "<h1>FoundRoomsServlet</h1><br>"
+        		+ "<h3>Ingelogd als: " + request.getSession().getAttribute("username") + "</h3><br>"
+        		+ "<form action=SearchRoomServlet method=post>"
+        		+ "<input type=submit text=submit value=uitloggen></form>"
         		+ "<form action=FoundRoomsServlet method=&quot;post&quot;>        "
-        		+ "Square meter: <input type=&quot;text&quot; name=&quot;sqauremeter&quot;><br>        "
-        		+ "Max price: <input type=&quot;text&quot; name=&quot;maxprice&quot;><br>        "
-        		+ "City: <input type=&quot;text&quot; name=&quot;city&quot;><br>       "
+        		+ "Square meter: <input type=&quot;text&quot; name=squaremeter><br>        "
+        		+ "Max price: <input type=&quot;text&quot; name=maxprice><br>        "
+        		+ "City: <input type=&quot;text&quot; name=city><br>       "
         		+ "<input type=submit text=Submit value=Search></input><br>        "
         		+ "</form>        "
         		+ "</body>        "
@@ -51,7 +54,9 @@ public class SearchRoomServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.getSession().removeAttribute("username");
+		request.getSession().invalidate();
+		response.sendRedirect("login.html");
 	}
 
 }

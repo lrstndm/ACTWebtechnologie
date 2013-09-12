@@ -34,6 +34,7 @@ public class ShowRoomsServlet extends HttpServlet {
         String html = "<html>"
 		+ "<body>"
 		+ "<h1>ShowRoomsServlet</h1><br>"
+		+ "<h3>Ingelogd als: " + request.getSession().getAttribute("username") + "</h3><br><br>"
 		+ "<a href=addRoom.html>Add a new Room</a><br>"
 		+ "<h3>Current rooms:</h3>"
 		+ "<table border=1>"
@@ -53,7 +54,9 @@ public class ShowRoomsServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+//		request.getSession().removeAttribute("username");
+		request.getSession().invalidate();
+		response.sendRedirect("login.html");
 	}
 
 }

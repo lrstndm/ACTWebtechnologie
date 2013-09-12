@@ -33,12 +33,14 @@ public class FoundRoomsServlet extends HttpServlet {
 		int squaremeter = 0;
 		int maxPrice = 0;
 		try {
+			System.out.println(request.getParameter("squaremeter"));
 			squaremeter = Integer.parseInt(request.getParameter("squaremeter"));
 			
 		} catch (NumberFormatException e) {
 			System.out.println("sqauremeter not formatted, will be empty");
 		}
 		try {
+			System.out.println(request.getParameter("maxprice"));
 			maxPrice = Integer.parseInt(request.getParameter("maxprice"));
 		} catch (NumberFormatException e) {
 			System.out.println("maxPrice not formatted, will be empty");
@@ -48,9 +50,12 @@ public class FoundRoomsServlet extends HttpServlet {
 		ArrayList<Room> founRooms = model.search(squaremeter, maxPrice, city);
 		String html = "<html>"
 				+ "<body>"
-				+ "<h1>ShowRoomsServlet</h1><br>"
-				+ "<a href=addRoom.html>Add a new Room</a><br>"
-				+ "<h3>Current rooms:</h3>"
+				+ "<h1>FoundRoomsServlet</h1><br>"
+				+ "<h3>Ingelogd als: " + request.getSession().getAttribute("username") + "</h3><br><br>"
+				+ "Square Meters: " + squaremeter
+				+ "<br>Max rent price: " + maxPrice
+				+ "<br>City: " + city
+				+ "<h3>Rooms:</h3>"
 				+ "<table border=1>"
 				+ "<tr><td>SqaureMeters</td><td>Price</td><td>City</td></tr>";
 				
@@ -67,7 +72,9 @@ public class FoundRoomsServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		request.getSession().removeAttribute("username");
+		request.getSession().invalidate();
+		response.sendRedirect("login.html");
 	}
 
 }
