@@ -62,6 +62,10 @@ public class Login extends HttpServlet {
 						session.setAttribute("username", u.getUsername());
 						response.sendRedirect("SearchRoomServlet");
 						break;
+					case "beheerder":
+						found = true;
+						session.setAttribute("username", u.getUsername());
+						response.sendRedirect("ShowPersonsServlet");
 					default:
 						break;
 					}

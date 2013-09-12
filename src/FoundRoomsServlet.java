@@ -51,7 +51,9 @@ public class FoundRoomsServlet extends HttpServlet {
 		String html = "<html>"
 				+ "<body>"
 				+ "<h1>FoundRoomsServlet</h1><br>"
-				+ "<h3>Ingelogd als: " + request.getSession().getAttribute("username") + "</h3><br><br>"
+				+ "<h3>Logged in as: " + request.getSession().getAttribute("username") + "</h3>"
+        		+ "<form action=SearchRoomServlet method=post>"
+        		+ "<input type=submit text=submit value=uitloggen></form><br>"
 				+ "Square Meters: " + squaremeter
 				+ "<br>Max rent price: " + maxPrice
 				+ "<br>City: " + city
